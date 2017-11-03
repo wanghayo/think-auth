@@ -1,13 +1,19 @@
 {
     "name": "wanghayo/think-auth",
     "description": "auth and thinkphp for v5.1 Package",
+    "homepage": "https://github.com/wanghayo/think-auth",
     "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "zhouyue",
             "email": "446532@qq.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/wanghayo/think-auth/issues"
+    },
     "require": {},
     "autoload": {
         "psr-4": {
