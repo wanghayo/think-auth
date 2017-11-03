@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 // | Author: luofei614 <weibo.com/luofei614>　
 // +----------------------------------------------------------------------
-namespace auth;
+namespace think\auth;
 use think\facade\Config;
 use think\Db;
 /**
