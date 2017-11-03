@@ -1,2 +1,2 @@
 # think-auth
-auth and thinkphp for v5.1
+auth and thinkphp
