@@ -1,0 +1,17 @@
+{
+    "name": "wanghayo/think-auth",
+    "description": "auth and thinkphp for v5.1 Package",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "zhouyue",
+            "email": "446532@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "think\\auth\\": "src/"
+        }
+    }
+}
