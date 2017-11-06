@@ -102,8 +102,7 @@ class Auth{
       * @return boolean           通过验证返回true;失败返回false
      */
     public function check($name, $uid, $type=1, $mode='url', $relation='or') {
-        if (!$this->_config['AUTH_ON'])
-            return true;
+        if (!$this->_config['AUTH_ON']) return true;
         $authList = $this->getAuthList($uid,$type); //获取用户需要验证的所有有效规则列表
         if (is_string($name)) {
             $name = strtolower($name);
@@ -113,10 +112,12 @@ class Auth{
                 $name = array($name);
             }
         }
-        $list = array(); //保存验证通过的规则名
+
+        $list = []; //保存验证通过的规则名
         if ($mode=='url') {
             $REQUEST = unserialize( strtolower(serialize($_REQUEST)) );
         }
+
         foreach ( $authList as $auth ) {
             $query = preg_replace('/^.+\?/U','',$auth);
             if ($mode=='url' && $query!=$auth ) {
@@ -130,10 +131,12 @@ class Auth{
                 $list[] = $auth ;
             }
         }
+
         if ($relation == 'or' and !empty($list)) {
             return true;
         }
         $diff = array_diff($name, $list);
+        
         if ($relation == 'and' and empty($diff)) {
             return true;
         }
