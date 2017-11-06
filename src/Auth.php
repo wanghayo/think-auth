@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: luofei614 <weibo.com/luofei614>　
+// | Author: zhouyue <446532@qq.com>　
 // +----------------------------------------------------------------------
 namespace think\auth;
 use think\facade\Config;
@@ -177,21 +177,23 @@ class Auth{
 
         //读取用户所属用户组
         $groups = $this->getGroups($uid);
+
         $ids = [];//保存用户所属用户组设置的所有权限规则id
         foreach ($groups as $g) {
             $ids = array_merge($ids, explode(',', trim($g['rules'], ',')));
         }
+
         $ids = array_unique($ids);
         if (empty($ids)) {
             $_authList[$uid.$t] = [];
             return [];
         }
-
-        $map=array(
-            'id'=>['in',$ids],
-            'type'=>$type,
-            'status'=>1,
-        );
+        $map=[
+            'id'=>['id','in',$ids],
+            'type'=>['type','=',$type],
+            'status'=>['status','=',1],
+        ];
+        
         //读取用户组所有权限规则
         $rules = Db::table($this->_config['AUTH_RULE'])->where($map)->field('condition,name')->select();
 
@@ -226,7 +228,7 @@ class Auth{
     protected function getUserInfo($uid) {
         static $userinfo=[];
         if(!isset($userinfo[$uid])){
-             $userinfo[$uid]=MDb::table($this->_config['AUTH_USER'])->where('uid',$uid)->find();
+             $userinfo[$uid]=Db::table($this->_config['AUTH_USER'])->where('uid',$uid)->find();
         }
         return $userinfo[$uid];
     }
