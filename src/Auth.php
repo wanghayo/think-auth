@@ -112,7 +112,7 @@ class Auth{
                 $name = array($name);
             }
         }
-
+        
         $list = []; //保存验证通过的规则名
         if ($mode=='url') {
             $REQUEST = unserialize( strtolower(serialize($_REQUEST)) );
@@ -136,7 +136,6 @@ class Auth{
             return true;
         }
         $diff = array_diff($name, $list);
-        
         if ($relation == 'and' and empty($diff)) {
             return true;
         }
@@ -193,10 +192,9 @@ class Auth{
         }
         $map=[
             'id'=>['id','in',$ids],
-            'type'=>['type','=',$type],
+            // 'type'=>['type','=',$type],
             'status'=>['status','=',1],
         ];
-        
         //读取用户组所有权限规则
         $rules = Db::table($this->_config['AUTH_RULE'])->where($map)->field('condition,name')->select();
 
